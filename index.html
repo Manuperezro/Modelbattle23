@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SDLC Models Interactive Challenge — BTEC Level 3 Computing Unit 23</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- TOP HUD HEADER -->
+  <header class="hud-header">
+    <div class="brand" onclick="window.gameState.goToMission(1)">
+      <span class="brand-icon">🚀</span>
+      <div>
+        <div class="brand-title">SDLC MODELS LAB</div>
+        <div class="brand-subtitle">BTEC Level 3 Computing — Unit 23</div>
+      </div>
+    </div>
+
+    <!-- JOURNEY PROGRESS DISPLAY -->
+    <div class="journey-bar">
+      <span class="journey-label">YOUR JOURNEY:</span>
+      <div class="journey-steps">
+        <div class="journey-step-node active" id="journey-node-1">1</div>
+        <span class="journey-arrow">➔</span>
+        <div class="journey-step-node" id="journey-node-2">2</div>
+        <span class="journey-arrow">➔</span>
+        <div class="journey-step-node" id="journey-node-3">3</div>
+        <span class="journey-arrow">➔</span>
+        <div class="journey-step-node" id="journey-node-4">4</div>
+        <span class="journey-arrow">➔</span>
+        <div class="journey-step-node" id="journey-node-5">5</div>
+        <span class="journey-arrow">➔</span>
+        <div class="journey-step-node" id="journey-node-6">6</div>
+        <span class="journey-arrow">➔</span>
+        <div class="journey-step-node" id="journey-node-7">7</div>
+        <span class="journey-arrow">➔</span>
+        <div class="journey-step-node" id="journey-node-8">8</div>
+      </div>
+    </div>
+
+    <div class="hud-actions">
+      <button class="btn-icon" id="btn-sound-toggle" title="Toggle Sound">🔊</button>
+      <button class="btn-secondary" id="btn-open-modal">📍 Mission Map</button>
+    </div>
+  </header>
+
+  <!-- Accessibility Live Announcer -->
+  <div id="a11y-announcer" aria-live="polite" style="position:absolute; width:1px; height:1px; overflow:hidden;"></div>
+
+  <!-- MAIN APPLICATION CONTENT CONTAINER -->
+  <main class="main-wrapper">
+
+    <!-- MISSION 1: BUILD WATERFALL -->
+    <section id="mission-1" class="mission-screen active">
+      <div class="mission-header-card">
+        <div class="mission-title-group">
+          <h2>🧩 Mission 1 — Build the Waterfall Model</h2>
+          <p class="mission-desc">
+            Arrange the development activity blocks into the correct sequence to build the Waterfall Model.
+          </p>
+        </div>
+      </div>
+
+      <div class="accessibility-banner">
+        💡 <strong>DUAL INPUT READY:</strong> Click a block in the pool to select it (shows <code>SELECTED ✓</code>), then click a target slot to place it! Click any placed block to return it to the pool.
+      </div>
+
+      <!-- Activity Pool -->
+      <div style="background:var(--bg-card); border:var(--glass-border); padding:1.25rem; border-radius:var(--radius-lg);">
+        <h3 style="font-family:var(--font-heading); margin-bottom:0.75rem;">📦 Available Activity Blocks</h3>
+        <div class="drag-pool" id="m1-pool"></div>
+      </div>
+
+      <!-- Sequence Slots -->
+      <div style="background:var(--bg-card); border:var(--glass-border); padding:1.5rem; border-radius:var(--radius-lg); display:flex; flex-direction:column; align-items:center;">
+        <h3 style="font-family:var(--font-heading); margin-bottom:1rem;">💧 Empty Waterfall Structure</h3>
+        <div class="sequence-track" id="m1-track"></div>
+      </div>
+
+      <div class="feedback-box" id="m1-feedback"></div>
+    </section>
+
+    <!-- MISSION 2: SURVIVE A REQUIREMENT CHANGE (BREAK WATERFALL) -->
+    <section id="mission-2" class="mission-screen">
+      <div class="mission-header-card">
+        <div class="mission-title-group">
+          <h2>🏫 Mission 2 — Survive a Requirement Change</h2>
+          <p class="mission-desc">
+            <strong>Project: College Room Booking System.</strong> Requirements and Design were completed, and Development is underway!
+          </p>
+        </div>
+      </div>
+
+      <!-- Client Message Popup -->
+      <div style="background:rgba(255,51,102,0.12); border:2px solid var(--accent-red); padding:1.5rem; border-radius:var(--radius-lg);">
+        <h3 style="color:var(--accent-red); font-family:var(--font-heading); display:flex; align-items:center; gap:0.5rem;">
+          📩 NEW CLIENT MESSAGE
+        </h3>
+        <p style="font-size:1.1rem; margin-top:0.5rem;">
+          > <em>"The college now wants students to be able to book rooms using their mobile phones!"</em>
+        </p>
+      </div>
+
+      <div style="background:var(--bg-card); border:var(--glass-border); padding:1.5rem; border-radius:var(--radius-lg);">
+        <h3 style="font-family:var(--font-heading); margin-bottom:1rem;">Click all project stages that are affected by this late requirement change:</h3>
+        
+        <div class="waterfall-timeline">
+          <div class="timeline-stage-card completed" id="m2-stage-req" onclick="window.m2.toggleStage('req')">
+            <span>📋 REQUIREMENTS (Completed)</span>
+            <span style="font-size:0.85rem; color:var(--text-secondary);">Click if affected</span>
+          </div>
+          <div class="timeline-stage-card completed" id="m2-stage-des" onclick="window.m2.toggleStage('des')">
+            <span>📐 SYSTEM DESIGN (Completed)</span>
+            <span style="font-size:0.85rem; color:var(--text-secondary);">Click if affected</span>
+          </div>
+          <div class="timeline-stage-card" id="m2-stage-dev" onclick="window.m2.toggleStage('dev')">
+            <span>💻 DEVELOPMENT (50% Underway)</span>
+            <span style="font-size:0.85rem; color:var(--text-secondary);">Click if affected</span>
+          </div>
+          <div class="timeline-stage-card" id="m2-stage-tst" onclick="window.m2.toggleStage('tst')">
+            <span>🧪 TESTING (Planned)</span>
+            <span style="font-size:0.85rem; color:var(--text-secondary);">Click if affected</span>
+          </div>
+        </div>
+
+        <button class="btn-primary" style="margin-top:1rem;" onclick="window.m2.evaluateImpact()">EVALUATE CHANGE IMPACT ➔</button>
+      </div>
+
+      <div class="feedback-box" id="m2-feedback"></div>
+    </section>
+
+    <!-- MISSION 3: RUN AN AGILE SPRINT -->
+    <section id="mission-3" class="mission-screen">
+      <div class="mission-header-card">
+        <div class="mission-title-group">
+          <h2>📱 Mission 3 — Run an Agile Sprint</h2>
+          <p class="mission-desc">
+            <strong>Scenario: A Startup is building a Food Ordering App.</strong> Instead of building everything at once over months, let's build the system in small, iterative Sprints!
+          </p>
+        </div>
+      </div>
+
+      <div style="background:var(--bg-card); border:var(--glass-border); padding:1.5rem; border-radius:var(--radius-lg);">
+        <h3 style="font-family:var(--font-heading); margin-bottom:0.75rem;">📋 Product Backlog (Select features for Sprint 1):</h3>
+        <div class="drag-pool" id="m3-backlog-items"></div>
+
+        <button class="btn-primary" style="margin-top:1rem;" onclick="window.m3.startSprint()">▶ START SPRINT 1 ➔</button>
+      </div>
+
+      <!-- Kanban Sprint Board -->
+      <div style="background:var(--bg-card); border:var(--glass-border); padding:1.5rem; border-radius:var(--radius-lg);">
+        <h3 style="font-family:var(--font-heading); color:var(--agile-color);">📊 SPRINT BOARD</h3>
+        
+        <div class="kanban-board">
+          <div class="kanban-col">
+            <div class="kanban-col-title">TODO</div>
+            <div id="m3-kanban-todo" style="display:flex; flex-direction:column; gap:0.5rem;"></div>
+          </div>
+          <div class="kanban-col">
+            <div class="kanban-col-title">BUILDING</div>
+          </div>
+          <div class="kanban-col">
+            <div class="kanban-col-title">TESTING</div>
+          </div>
+          <div class="kanban-col">
+            <div class="kanban-col-title">DONE</div>
+            <div id="m3-kanban-done" style="display:flex; flex-direction:column; gap:0.5rem;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feedback-box" id="m3-feedback"></div>
+    </section>
+
+    <!-- MISSION 4: BUILD THE V-MODEL -->
+    <section id="mission-4" class="mission-screen">
+      <div class="mission-header-card">
+        <div class="mission-title-group">
+          <h2>⚡ Mission 4 — Build the V-Model</h2>
+          <p class="mission-desc">
+            The V-Model pairs development stages with matching testing stages! Click a Development activity on the left, then click its matching Testing activity on the right to connect them.
+          </p>
+        </div>
+      </div>
+
+      <div style="background:var(--bg-card); border:var(--glass-border); padding:2rem; border-radius:var(--radius-lg);">
+        <div style="text-align:center; font-family:var(--font-heading); font-size:3rem; font-weight:800; color:var(--vmodel-color); margin-bottom:1.5rem;">V</div>
+
+        <div class="v-model-wrapper">
+          <!-- Left Development Side -->
+          <div class="v-side">
+            <button class="v-node-btn" data-side="left" data-id="req">📋 REQUIREMENTS</button>
+            <button class="v-node-btn" data-side="left" data-id="sys">🏗 SYSTEM DESIGN</button>
+            <button class="v-node-btn" data-side="left" data-id="det">📐 DETAILED DESIGN</button>
+          </div>
+
+          <div style="padding:0 2rem; color:var(--text-muted); font-size:2rem;">↔</div>
+
+          <!-- Right Testing Side -->
+          <div class="v-side">
+            <button class="v-node-btn" data-side="right" data-id="unit">🧪 UNIT / INTEGRATION TESTING</button>
+            <button class="v-node-btn" data-side="right" data-id="systest">🖥️ SYSTEM TESTING</button>
+            <button class="v-node-btn" data-side="right" data-id="accept">👤 ACCEPTANCE TESTING</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="feedback-box" id="m4-feedback"></div>
+    </section>
+
+    <!-- MISSION 5: FIX THE SPIRAL MODEL (CLICK-THROUGH SIMULATION) -->
+    <section id="mission-5" class="mission-screen">
+      <div class="mission-header-card">
+        <div class="mission-title-group">
+          <h2>🌀 Mission 5 — Navigate the Spiral Model</h2>
+          <p class="mission-desc">
+            <strong>Scenario: Hospital Patient System.</strong> Sensitive patient records, expensive budget, severe failure risks. Progress through the 4 spiral stages in order!
+          </p>
+        </div>
+      </div>
+
+      <!-- Step-by-Step Spiral Stage Nodes -->
+      <div class="spiral-stage-tracker">
+        <div class="spiral-step-node unlocked" id="m5-node-1" onclick="window.m5.clickPlan()">
+          <span style="font-size:1.5rem;">📋</span>
+          <strong>1 — PLAN</strong>
+        </div>
+        <div class="spiral-step-node" id="m5-node-2" onclick="window.m5.clickIdentifyRisks()">
+          <span style="font-size:1.5rem;">⚠️</span>
+          <strong>2 — IDENTIFY RISKS</strong>
+        </div>
+        <div class="spiral-step-node" id="m5-node-3" onclick="window.m5.clickDevelop()">
+          <span style="font-size:1.5rem;">🛠</span>
+          <strong>3 — DEVELOP / PROTOTYPE</strong>
+        </div>
+        <div class="spiral-step-node" id="m5-node-4" onclick="window.m5.clickEvaluate()">
+          <span style="font-size:1.5rem;">👥</span>
+          <strong>4 — EVALUATE</strong>
+        </div>
+      </div>
+
+      <!-- Active Stage Interactive Panel -->
+      <div style="background:var(--bg-card); border:var(--glass-border); padding:1.5rem; border-radius:var(--radius-lg);" id="m5-active-panel">
+        <div style="text-align:center; padding:1rem;">
+          <h3 style="font-family:var(--font-heading); color:var(--accent-cyan);">Click STAGE 1: PLAN above to begin the Spiral Cycle!</h3>
+        </div>
+      </div>
+
+      <div class="feedback-box" id="m5-feedback"></div>
+    </section>
+
+    <!-- MISSION 6: REDESIGNED ITERATIVE DEVELOPMENT (CODE & UI PUZZLE) -->
+    <section id="mission-6" class="mission-screen">
+      <div class="mission-header-card">
+        <div class="mission-title-group">
+          <h2>🛠️ Mission 6 — Improve Iteratively (Code & UI Puzzle)</h2>
+          <p class="mission-desc">
+            <strong>Build It, Review It, Improve It, Repeat!</strong> Click code fix cards to resolve user feedback and watch the live code & UI preview transform in real-time.
+          </p>
+        </div>
+      </div>
+
+      <div class="ui-mockup-frame">
+        <!-- Live Code Box -->
+        <div class="code-puzzle-card" id="m6-code-box">
+          <div style="color:var(--text-muted); font-size:0.8rem; margin-bottom:0.4rem;">// LIVE CODE PREVIEW (Version 1.0)</div>
+          <code>
+            &lt;input type="<span style="color:var(--accent-red)">text</span>" placeholder="Password"&gt;<br/>
+            &lt;button style="<span style="color:var(--accent-red)">width:30px; font-size:6px;</span>"&gt;Login&lt;/button&gt;
+          </code>
+        </div>
+
+        <!-- UI Mockup Screen -->
+        <div class="ui-mockup-screen" id="m6-screen-preview">
+          <h3 style="color:var(--accent-red); font-family:var(--font-heading);">Version 1.0 (Basic Prototype)</h3>
+          <input type="text" placeholder="Password" style="padding:0.5rem; font-size:0.9rem; border-radius:4px; border:1px solid #475569; width:100%;" disabled>
+          <button style="padding:2px; font-size:8px; width:30px; background:var(--accent-cyan); color:#000; font-weight:700; border:none; border-radius:4px;" disabled>Login</button>
+        </div>
+
+        <!-- V1 Fix Cards Panel -->
+        <div id="m6-v1-panel" style="margin-top:1.25rem;">
+          <h4 style="font-family:var(--font-heading); margin-bottom:0.5rem; color:var(--accent-cyan);">
+            Click Code Fix Cards to Apply:
+          </h4>
+          <div style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;">
+            <div class="risk-card" id="m6-fix-pass" onclick="window.m6.toggleFix('pass')">
+              <span>○ 🔧 Fix 1: Mask Password Input (type="password")</span>
+            </div>
+            <div class="risk-card" id="m6-fix-btn" onclick="window.m6.toggleFix('btn')">
+              <span>○ 🔧 Fix 2: Enlarge Login Button (width: 100%)</span>
+            </div>
+          </div>
+
+          <button class="btn-primary" id="m6-btn-v2" disabled style="opacity:0.5; cursor:not-allowed;" onclick="window.m6.applyVersion2()">
+            APPLY FIXES & RELEASE VERSION 2.0 ➔
+          </button>
+        </div>
+
+        <!-- V2 Fix Cards Panel -->
+        <div id="m6-v2-panel" style="display:none; margin-top:1.25rem;">
+          <button class="btn-primary" onclick="window.m6.applyVersion3()">RELEASE VERSION 3.0 POLISH ➔</button>
+        </div>
+      </div>
+
+      <div class="feedback-box" id="m6-feedback"></div>
+    </section>
+
+    <!-- MISSION 7: REDESIGNED REAL-WORLD DETECTIVE (GUESS BEFORE REVEAL) -->
+    <section id="mission-7" class="mission-screen">
+      <div class="mission-header-card">
+        <div class="mission-title-group">
+          <h2>🕵️ Mission 7 — Real-World Model Detective</h2>
+          <p class="mission-desc">
+            Investigate real-world evidence clues and <strong>MAKE A GUESS</strong> for each case file before revealing the answer!
+          </p>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1rem;">
+        
+        <!-- Case A -->
+        <div class="spiral-step-card" id="m7-case-a">
+          <h3>📱 Case File A: New Social App</h3>
+          <div class="clue-card">🔎 Requirements change frequently</div>
+          <div class="clue-card">🔎 Users test early versions</div>
+          <div class="clue-card">🔎 Features released in small groups</div>
+          
+          <div style="margin-top:0.75rem;">
+            <p style="font-size:0.85rem; font-weight:700; color:var(--accent-amber); margin-bottom:0.4rem;">Make your guess first:</p>
+            <div style="display:flex; flex-wrap:wrap; gap:0.35rem;">
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('a', 'waterfall')">Waterfall</button>
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('a', 'agile')">Agile</button>
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('a', 'spiral')">Spiral</button>
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('a', 'vmodel')">V-Model</button>
+            </div>
+          </div>
+          <div id="m7-case-a-result"></div>
+        </div>
+
+        <!-- Case B -->
+        <div class="spiral-step-card" id="m7-case-b">
+          <h3>🏥 Case File B: Critical Medical Software</h3>
+          <div class="clue-card">🔎 Significant financial & safety risks</div>
+          <div class="clue-card">🔎 Failure has severe consequences</div>
+          <div class="clue-card">🔎 Continuous risk assessments & prototypes</div>
+          
+          <div style="margin-top:0.75rem;">
+            <p style="font-size:0.85rem; font-weight:700; color:var(--accent-amber); margin-bottom:0.4rem;">Make your guess first:</p>
+            <div style="display:flex; flex-wrap:wrap; gap:0.35rem;">
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('b', 'waterfall')">Waterfall</button>
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('b', 'agile')">Agile</button>
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('b', 'spiral')">Spiral</button>
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('b', 'vmodel')">V-Model</button>
+            </div>
+          </div>
+          <div id="m7-case-b-result"></div>
+        </div>
+
+        <!-- Case C -->
+        <div class="spiral-step-card" id="m7-case-c">
+          <h3>🏢 Case File C: Fixed Client Project</h3>
+          <div class="clue-card">🔎 Requirements agreed upfront</div>
+          <div class="clue-card">🔎 Formal approval stages</div>
+          <div class="clue-card">🔎 Late changes are very expensive</div>
+          
+          <div style="margin-top:0.75rem;">
+            <p style="font-size:0.85rem; font-weight:700; color:var(--accent-amber); margin-bottom:0.4rem;">Make your guess first:</p>
+            <div style="display:flex; flex-wrap:wrap; gap:0.35rem;">
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('c', 'waterfall')">Waterfall</button>
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('c', 'agile')">Agile</button>
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('c', 'spiral')">Spiral</button>
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('c', 'vmodel')">V-Model</button>
+            </div>
+          </div>
+          <div id="m7-case-c-result"></div>
+        </div>
+
+        <!-- Case D -->
+        <div class="spiral-step-card" id="m7-case-d">
+          <h3>🚗 Case File D: Safety-Critical Control</h3>
+          <div class="clue-card">🔎 Requirements must be verified</div>
+          <div class="clue-card">🔎 Testing planned alongside development</div>
+          <div class="clue-card">🔎 Specification ↔ Test phase matching</div>
+          
+          <div style="margin-top:0.75rem;">
+            <p style="font-size:0.85rem; font-weight:700; color:var(--accent-amber); margin-bottom:0.4rem;">Make your guess first:</p>
+            <div style="display:flex; flex-wrap:wrap; gap:0.35rem;">
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('d', 'waterfall')">Waterfall</button>
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('d', 'agile')">Agile</button>
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('d', 'spiral')">Spiral</button>
+              <button class="btn-secondary" style="font-size:0.75rem; padding:0.35rem 0.6rem;" onclick="window.m7.guessCase('d', 'vmodel')">V-Model</button>
+            </div>
+          </div>
+          <div id="m7-case-d-result"></div>
+        </div>
+
+      </div>
+
+      <div class="feedback-box" id="m7-feedback"></div>
+    </section>
+
+    <!-- MISSION 8: THE PROJECT CONSULTANT (FINAL MISSION) -->
+    <section id="mission-8" class="mission-screen">
+      <div class="mission-header-card">
+        <div class="mission-title-group">
+          <h2>👔 Final Mission — Software Project Consultant</h2>
+          <p class="mission-desc">
+            <strong>Client Project: College Student App.</strong> "We know the basic idea, but we're not completely sure what students will want. Requirements may change after feedback."
+          </p>
+        </div>
+      </div>
+
+      <div style="background:var(--bg-card); border:var(--glass-border); padding:1.5rem; border-radius:var(--radius-lg);">
+        <h3 style="font-family:var(--font-heading); margin-bottom:0.75rem;">Build your recommended development strategy using building blocks:</h3>
+        
+        <div class="drag-pool" style="margin-bottom:1.5rem;">
+          <button class="btn-secondary" id="m8-block-REQUIREMENTS" onclick="window.m8.toggleBlock('REQUIREMENTS')">📋 REQUIREMENTS</button>
+          <button class="btn-secondary" id="m8-block-ITERATION" onclick="window.m8.toggleBlock('ITERATION')">🔄 ITERATION</button>
+          <button class="btn-secondary" id="m8-block-USER FEEDBACK" onclick="window.m8.toggleBlock('USER FEEDBACK')">👤 USER FEEDBACK</button>
+          <button class="btn-secondary" id="m8-block-RISK ANALYSIS" onclick="window.m8.toggleBlock('RISK ANALYSIS')">⚠️ RISK ANALYSIS</button>
+          <button class="btn-secondary" id="m8-block-TESTING" onclick="window.m8.toggleBlock('TESTING')">🧪 TESTING</button>
+          <button class="btn-secondary" id="m8-block-SMALL RELEASE" onclick="window.m8.toggleBlock('SMALL RELEASE')">📦 SMALL RELEASE</button>
+        </div>
+
+        <h4 style="font-family:var(--font-heading); margin-bottom:0.5rem;">Your Strategy Lifecycle Stack:</h4>
+        <div class="drag-pool" id="m8-stack-box" style="min-height:70px; background:rgba(0,0,0,0.3);">
+          <span style="color:var(--text-muted);">[ Click building blocks above to assemble strategy ]</span>
+        </div>
+
+        <button class="btn-primary" style="margin-top:1.5rem;" onclick="window.m8.finishConsultant()">COMPLETE STRATEGY CONSULTATION ➔</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MISSION SELECTOR MODAL -->
+  <div class="modal-overlay" id="mission-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">📍 Select Mission</h3>
+        <button class="modal-close" id="btn-close-modal">&times;</button>
+      </div>
+      <div id="mission-grid-container" style="display:grid; grid-template-columns:1fr; gap:0.75rem;"></div>
+    </div>
+  </div>
+
+  <!-- JavaScript Files -->
+  <script src="js/audio.js"></script>
+  <script src="js/drag-click-handler.js"></script>
+  <script src="js/missions.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
