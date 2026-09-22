@@ -1,0 +1,332 @@
+/* SDLC Models Challenge - UI Components Styling (Enhanced Interactions) */
+
+/* Interactive Drag & Click Pool */
+.drag-pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 2px dashed rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  min-height: 85px;
+  align-items: center;
+}
+
+.drag-item {
+  background: linear-gradient(135deg, rgba(30, 41, 69, 0.95), rgba(15, 23, 42, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-primary);
+  padding: 0.75rem 1.15rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.drag-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 6px 16px rgba(0, 242, 254, 0.25);
+}
+
+.drag-item.selected {
+  outline: 2px solid var(--accent-cyan);
+  background: linear-gradient(135deg, rgba(0, 242, 254, 0.25), rgba(30, 41, 69, 0.95));
+  box-shadow: 0 0 20px var(--accent-cyan);
+}
+
+.drag-item.selected::after {
+  content: 'SELECTED ✓';
+  font-size: 0.65rem;
+  font-weight: 800;
+  background: var(--accent-cyan);
+  color: #000;
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-full);
+  margin-left: 0.4rem;
+}
+
+/* Empty Waterfall Stage Slots */
+.waterfall-slot {
+  background: rgba(255, 255, 255, 0.03);
+  border: 2px dashed rgba(0, 180, 216, 0.3);
+  border-radius: var(--radius-md);
+  min-height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.waterfall-slot:hover {
+  border-color: var(--accent-cyan);
+  background: rgba(0, 242, 254, 0.06);
+}
+
+.waterfall-slot.highlight {
+  background: rgba(0, 242, 254, 0.1);
+  border-color: var(--accent-cyan);
+}
+
+.waterfall-slot.placed {
+  background: rgba(0, 180, 216, 0.15);
+  border-color: var(--waterfall-color);
+  border-style: solid;
+}
+
+/* Mission 2 Break Waterfall Timeline */
+.waterfall-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+
+.timeline-stage-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.timeline-stage-card.affected {
+  border-color: var(--accent-red);
+  background: rgba(255, 51, 102, 0.15);
+  box-shadow: 0 0 15px rgba(255, 51, 102, 0.3);
+}
+
+.timeline-stage-card.completed {
+  border-color: var(--accent-green);
+  background: rgba(0, 245, 212, 0.08);
+}
+
+/* Mission 3 Agile Kanban Board */
+.kanban-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .kanban-board {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.kanban-col {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 180px;
+}
+
+.kanban-col-title {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--accent-cyan);
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Mission 4 V-Model Layout */
+.v-model-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 380px;
+  padding: 1rem;
+}
+
+.v-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 280px;
+}
+
+.v-node-btn {
+  background: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.1rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  position: relative;
+}
+
+.v-node-btn:hover {
+  border-color: var(--accent-cyan);
+  transform: scale(1.03);
+}
+
+.v-node-btn.selected {
+  border-color: var(--accent-cyan);
+  background: rgba(0, 242, 254, 0.2);
+  box-shadow: 0 0 15px var(--accent-cyan);
+}
+
+.v-node-btn.connected {
+  border-color: var(--accent-green);
+  background: rgba(0, 245, 212, 0.15);
+}
+
+/* Mission 5 Spiral Step-by-Step Simulation */
+.spiral-stage-tracker {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 650px) {
+  .spiral-stage-tracker {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.spiral-step-node {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  opacity: 0.4;
+  cursor: not-allowed;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.spiral-step-node.unlocked {
+  opacity: 1;
+  cursor: pointer;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+}
+
+.spiral-step-node.completed {
+  opacity: 1;
+  border-color: var(--accent-green);
+  background: rgba(0, 245, 212, 0.12);
+  color: var(--accent-green);
+}
+
+.risk-card {
+  background: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.risk-card:hover {
+  border-color: var(--accent-amber);
+  transform: translateY(-2px);
+}
+
+.risk-card.selected {
+  border-color: var(--accent-green);
+  background: rgba(0, 245, 212, 0.12);
+  color: var(--accent-green);
+  font-weight: 700;
+  box-shadow: 0 0 15px rgba(0, 245, 212, 0.3);
+}
+
+/* Mission 6 Iterative Code/UI Puzzle */
+.code-puzzle-card {
+  background: #0f172a;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  font-family: monospace;
+  font-size: 0.9rem;
+  color: var(--accent-cyan);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.ui-mockup-frame {
+  background: #1e293b;
+  border: 2px solid #334155;
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  max-width: 440px;
+  margin: 0 auto;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+}
+
+.ui-mockup-screen {
+  background: #0f172a;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+/* Mission 7 Detective Cards */
+.clue-card {
+  background: rgba(30, 41, 69, 0.8);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Final Completion Checklist */
+.completion-checklist {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.completion-item {
+  background: var(--bg-card);
+  border: 1px solid var(--accent-green);
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  color: var(--accent-green);
+}
